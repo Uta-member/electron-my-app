@@ -12,14 +12,11 @@ const electronHandler = {
     },
   },
   shell: {
-    openUrl: async (url: string) => {
-      ipcRenderer.send("open-url", [url]);
+    execNotification: (notificationOption: NotificationConstructorOptions) => {
+      ipcRenderer.send("exec-notification", [notificationOption]);
     },
     execCmd: async (cmd: string): Promise<string> => {
       return await ipcRenderer.invoke("exec-cmd", [cmd]);
-    },
-    execNotification: (notificationOption: NotificationConstructorOptions) => {
-      ipcRenderer.send("exec-notification", [notificationOption]);
     },
   },
   fs: {

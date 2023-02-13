@@ -1,3 +1,4 @@
+import { NotificationConstructorOptions } from "electron";
 import { useState } from "react";
 
 const FunctionTestPage = () => {
@@ -10,6 +11,14 @@ const FunctionTestPage = () => {
 
   const sendTestMsg = () => {
     window.electron.test.sendTest("this is testMessage");
+  };
+
+  const execNotification = () => {
+    const notificationOptions: NotificationConstructorOptions = {
+      title: "てすと通知です",
+      body: "通知の内容です",
+    };
+    window.electron.shell.execNotification(notificationOptions);
   };
 
   const execCmd = async () => {
@@ -33,6 +42,7 @@ const FunctionTestPage = () => {
     >
       <h1>機能テストページ</h1>
       <button onClick={sendTestMsg}>testMsg呼び出し</button>
+      <button onClick={execNotification}>通知呼び出し</button>
       <div
         style={{
           display: "flex",

@@ -22,14 +22,6 @@ export const SJIStoUNICODE = (bytes: string) => {
 };
 
 /**
- * urlを基底のブラウザで開く関数
- * @param url 開きたいurl
- */
-const openUrl = (url: string) => {
-  shell.openExternal(url);
-};
-
-/**
  * コマンドを実行する関数
  * @param cmd 実行したいコマンド
  * @returns コマンドの実行結果
@@ -63,7 +55,6 @@ const execNotification = (
 };
 
 const shellFunctionListener = () => {
-  ipcMain.on("open-url", (event, [url]: string[]) => openUrl(url));
   // 戻り値のあるものは"handle"でリスナーを立てて、
   // レンダラー側はinvokeを使って
   ipcMain.handle(
