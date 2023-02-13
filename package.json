@@ -12,10 +12,6 @@
     "lint": "eslint --ext .ts,.tsx ."
   },
   "keywords": [],
-  "author": {
-    "name": "sugane uta",
-    "email": "sugane.ns10@gmail.com"
-  },
   "license": "MIT",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.5",
@@ -41,8 +37,11 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
     "electron-squirrel-startup": "^1.0.0",
+    "encoding-japanese": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1"
   }
 }
