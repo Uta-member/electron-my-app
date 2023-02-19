@@ -1,4 +1,4 @@
-import { ElectronHandler } from "main/preload";
+import { ElectronHandler } from "renderer/preload";
 
 declare global {
   // windowからpreloadで定義したelectronHandlerを呼び出せるように型を追加
