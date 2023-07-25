@@ -1,8 +1,8 @@
 {
   "name": "electron-my-app",
-  "productName": "electron-my-app",
+  "productName": "Electronアプリ",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Electronのサンプルアプリです",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",

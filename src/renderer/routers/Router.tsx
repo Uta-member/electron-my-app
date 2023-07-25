@@ -1,8 +1,8 @@
 import { MemoryRouter, Outlet, Route, Routes } from "react-router-dom";
-import FunctionTestPage from "./pages/FunctionTestPage";
-import IndexPage from "./pages/IndexPage";
+import FunctionTestPage from "../pages/functionTestPage/FunctionTestPage";
+import IndexPage from "../pages/indexPage/IndexPage";
 
-const Router = () => {
+const MainRouter = () => {
   return (
     <MemoryRouter>
       <Routes>
@@ -15,4 +15,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default MainRouter;

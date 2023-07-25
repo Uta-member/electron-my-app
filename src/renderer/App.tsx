@@ -1,10 +1,10 @@
-import Router from "renderer/Router";
+import MainRouter from "renderer/routers/Router";
 
 const App = () => {
   return (
     <div>
       App
-      <Router />
+      <MainRouter />
     </div>
   );
 };

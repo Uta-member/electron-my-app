@@ -1,4 +1,3 @@
-import { ipcMain } from "electron";
 import { readFileSync } from "fs";
 
 /**
@@ -6,7 +5,7 @@ import { readFileSync } from "fs";
  * @param filePath ファイルのパス
  * @returns ファイルの中身。ファイルが存在しない場合はその旨を返す。
  */
-const readFile = (filePath: string) => {
+export const readFile = (filePath: string) => {
   try {
     const fileData = readFileSync(filePath, { encoding: "utf-8" });
     return fileData;
@@ -14,11 +13,3 @@ const readFile = (filePath: string) => {
     return "ファイルが存在しません";
   }
 };
-
-const fsFunctionListener = () => {
-  ipcMain.handle("read-file", async (event, [filePath]: string[]) =>
-    readFile(filePath)
-  );
-};
-
-export default fsFunctionListener;

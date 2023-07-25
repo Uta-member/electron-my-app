@@ -1,34 +1,32 @@
-import { NotificationConstructorOptions } from "electron";
 import { useState } from "react";
+import { readFile } from "renderer/apiFunctions/fsFunctions/readFile";
+import { execCmd } from "renderer/apiFunctions/shellFunctions/execCmd";
+import { sendTest } from "renderer/apiFunctions/testFunctions/sendTest";
 
 const FunctionTestPage = () => {
-  // コマンドを入れておくState
   const [cmdState, setCmdState] = useState("");
   const [cmdResultState, setCmdResultState] = useState("");
-
   const [fileNameState, setFileNameState] = useState("README.md");
   const [fileContentState, setFileContentState] = useState("");
 
-  const sendTestMsg = () => {
-    window.electron.test.sendTest("this is testMessage");
+  const handleClickSendTestMsg = () => {
+    sendTest({ msg: "this is test message" });
   };
 
   const execNotification = () => {
-    const notificationOptions: NotificationConstructorOptions = {
-      title: "てすと通知です",
-      body: "通知の内容です",
-    };
-    window.electron.shell.execNotification(notificationOptions);
+    new window.Notification("てすと通知です", { body: "通知の内容です" });
   };
 
-  const execCmd = async () => {
-    const cmdResult = await window.electron.shell.execCmd(cmdState);
-    setCmdResultState(cmdResult);
+  const handleClickExecCmd = async () => {
+    const cmdResult = await execCmd({ cmd: cmdState });
+    setCmdResultState(cmdResult.result);
   };
 
-  const readFile = async () => {
-    const fileContent = await window.electron.fs.readFile(fileNameState);
-    setFileContentState(fileContent);
+  const handleClickReadFile = async () => {
+    const fileContent = await readFile({
+      filePath: fileNameState,
+    });
+    setFileContentState(fileContent.fileData);
   };
 
   return (
@@ -41,7 +39,7 @@ const FunctionTestPage = () => {
       }}
     >
       <h1>機能テストページ</h1>
-      <button onClick={sendTestMsg}>testMsg呼び出し</button>
+      <button onClick={handleClickSendTestMsg}>testMsg呼び出し</button>
       <button onClick={execNotification}>通知呼び出し</button>
       <div
         style={{
@@ -61,7 +59,7 @@ const FunctionTestPage = () => {
             }}
             placeholder={"コマンド"}
           />
-          <button onClick={execCmd}>実行</button>
+          <button onClick={handleClickExecCmd}>実行</button>
         </div>
         <textarea value={cmdResultState} placeholder={"実行結果"} />
       </div>
@@ -83,7 +81,7 @@ const FunctionTestPage = () => {
             }}
             placeholder={"ファイル名"}
           />
-          <button onClick={readFile}>実行</button>
+          <button onClick={handleClickReadFile}>実行</button>
         </div>
         <textarea value={fileContentState} placeholder={"ファイルの内容"} />
       </div>
